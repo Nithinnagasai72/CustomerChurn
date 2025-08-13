@@ -1,0 +1,5 @@
+# Ignore numpy arrays in data folder
+data/*.npy
+
+# Ignore Jupyter checkpoint files
+.ipynb_checkpoints/
