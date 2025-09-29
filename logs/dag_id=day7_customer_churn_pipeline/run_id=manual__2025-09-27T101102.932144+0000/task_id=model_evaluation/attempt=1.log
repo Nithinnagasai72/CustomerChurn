@@ -1,0 +1,35 @@
+[2025-09-27T10:11:11.943+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: day7_customer_churn_pipeline.model_evaluation manual__2025-09-27T10:11:02.932144+00:00 [queued]>
+[2025-09-27T10:11:11.951+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: day7_customer_churn_pipeline.model_evaluation manual__2025-09-27T10:11:02.932144+00:00 [queued]>
+[2025-09-27T10:11:11.952+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 1
+[2025-09-27T10:11:11.964+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): model_evaluation> on 2025-09-27 10:11:02.932144+00:00
+[2025-09-27T10:11:11.970+0000] {standard_task_runner.py:60} INFO - Started process 297 to run task
+[2025-09-27T10:11:11.974+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'day7_customer_churn_pipeline', 'model_evaluation', 'manual__2025-09-27T10:11:02.932144+00:00', '--job-id', '35', '--raw', '--subdir', 'DAGS_FOLDER/customer_churn_pipeline.py', '--cfg-path', '/tmp/tmpl2e18lfn']
+[2025-09-27T10:11:11.977+0000] {standard_task_runner.py:88} INFO - Job 35: Subtask model_evaluation
+[2025-09-27T10:11:11.990+0000] {warnings.py:109} WARNING - /home/***/.local/lib/python3.8/site-packages/***/settings.py:194: DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+  SQL_ALCHEMY_CONN = conf.get("database", "SQL_ALCHEMY_CONN")
+
+[2025-09-27T10:11:12.020+0000] {task_command.py:423} INFO - Running <TaskInstance: day7_customer_churn_pipeline.model_evaluation manual__2025-09-27T10:11:02.932144+00:00 [running]> on host 324f5af268f7
+[2025-09-27T10:11:12.083+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='day7_customer_churn_pipeline' AIRFLOW_CTX_TASK_ID='model_evaluation' AIRFLOW_CTX_EXECUTION_DATE='2025-09-27T10:11:02.932144+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-09-27T10:11:02.932144+00:00'
+[2025-09-27T10:11:12.256+0000] {logging_mixin.py:188} INFO - ? Model Evaluation Done! Accuracy: 0.7892122072391767
+[2025-09-27T10:11:12.267+0000] {base.py:83} INFO - Using connection ID '***_db' for task execution.
+[2025-09-27T10:11:16.330+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 199, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 216, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/customer_churn_pipeline.py", line 108, in model_evaluation
+    conn = hook.get_conn()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/postgres/hooks/postgres.py", line 158, in get_conn
+    self.conn = psycopg2.connect(**conn_args)
+  File "/home/airflow/.local/lib/python3.8/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+psycopg2.OperationalError: could not translate host name "mysql" to address: Name or service not known
+
+[2025-09-27T10:11:16.356+0000] {taskinstance.py:1138} INFO - Marking task as FAILED. dag_id=day7_customer_churn_pipeline, task_id=model_evaluation, execution_date=20250927T101102, start_date=20250927T101111, end_date=20250927T101116
+[2025-09-27T10:11:16.378+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 35 for task model_evaluation (could not translate host name "mysql" to address: Name or service not known
+; 297)
+[2025-09-27T10:11:16.397+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2025-09-27T10:11:16.437+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
