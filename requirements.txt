@@ -1,0 +1,19 @@
+# Core data & ML libraries
+pandas
+numpy
+scikit-learn
+joblib
+
+# API framework
+fastapi
+uvicorn
+
+# Airflow (for DAG scheduling)
+apache-airflow
+apache-airflow-providers-postgres
+
+# Database connectivity
+psycopg2-binary
+
+# Utilities
+python-dotenv
