@@ -8,7 +8,7 @@
 # In[2]:
 
 
-import streamlit as st
+import streamlit_app as st
 import joblib
 import pandas as pd
 import numpy as np

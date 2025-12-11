@@ -1,5 +1,30 @@
 # Ignore numpy arrays in data folder
 data/*.npy
 
-# Ignore Jupyter checkpoint files
+# Ignore virtual environments
+ge_env/
+
+# Ignore Great Expectations folders
+gx/
+great_expectations/
+
+# Logs
+logs/
+
+# Jupyter notebook checkpoints
 .ipynb_checkpoints/
+
+# VSCode folder
+.vscode/
+
+# Python cache
+_pycache_/
+*.pyc
+
+# Model & numpy artifacts
+*.log
+*.pickle
+*.pkl
+*.npy
+*.npz
+*.joblib

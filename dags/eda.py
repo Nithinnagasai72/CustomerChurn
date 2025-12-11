@@ -56,8 +56,6 @@ plt.title('Contract Type vs Churn')
 plt.show()
 
 
-# In[ ]:
-
 
 
 
