@@ -1,19 +1,15 @@
-# Core data & ML libraries
-pandas
-numpy
-scikit-learn
-joblib
+# Data & ML
+pandas==2.1.4
+numpy==1.26.4
+scikit-learn==1.4.2
+joblib==1.4.2
 
-# API framework
-fastapi
-uvicorn
+# Data validation
+great-expectations==0.18.8
+rfc3987
 
-# Airflow (for DAG scheduling)
-apache-airflow
-apache-airflow-providers-postgres
-
-# Database connectivity
+# DB
 psycopg2-binary
 
-# Utilities
-python-dotenv
+# Airflow compatibility
+sqlalchemy<2.0
