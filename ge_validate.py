@@ -1,26 +1,20 @@
 import great_expectations as gx
 from great_expectations.core.expectation_configuration import ExpectationConfiguration
+from great_expectations.exceptions import DataContextError
 
-# ------------------------------------------------
-# Load Great Expectations Context
-# ------------------------------------------------
 context = gx.get_context()
 
-# ------------------------------------------------
-# Load Existing Expectation Suite
-# ------------------------------------------------
 SUITE_NAME = "customer_churn_suite"
 
 try:
     suite = context.get_expectation_suite(SUITE_NAME)
     print("Loaded existing expectation suite.")
-except Exception:
-    suite = context.add_expectation_suite(SUITE_NAME)
+except DataContextError:
+    suite = context.create_expectation_suite(
+        expectation_suite_name=SUITE_NAME,
+        overwrite_existing=False
+    )
     print("Created new expectation suite.")
-
-# ------------------------------------------------
-# ADD EXPECTATIONS (SAFE & GX 1.x COMPATIBLE)
-# ------------------------------------------------
 
 suite.add_expectation(
     ExpectationConfiguration(
@@ -57,9 +51,6 @@ suite.add_expectation(
     )
 )
 
-# ------------------------------------------------
-# SAVE SUITE
-# ------------------------------------------------
 context.save_expectation_suite(suite)
 
 print("Expectations added and saved successfully!")

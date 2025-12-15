@@ -1,4 +1,5 @@
 from airflow import DAG
+from validation.ge_data_validation import run_ge_validation
 from airflow.operators.python import PythonOperator
 from airflow.providers.postgres.hooks.postgres import PostgresHook
 from datetime import datetime
@@ -38,6 +39,7 @@ def data_preprocessing():
     os.makedirs(os.path.dirname(CLEANED_DATA_PATH), exist_ok=True)
     df.to_csv(CLEANED_DATA_PATH, index=False)
     print(f"? Data Preprocessing Done! Cleaned shape: {df.shape}")
+
 
 # -------------------------
 # Task 3: Model Training
@@ -151,6 +153,13 @@ with DAG(
         python_callable=data_preprocessing,
     )
 
+    ge_validation_task = PythonOperator(
+    task_id="ge_validation",
+    python_callable=run_ge_validation,
+    dag=dag
+   )
+
+
     train_task = PythonOperator(
         task_id="model_training",
         python_callable=model_training,
@@ -162,4 +171,4 @@ with DAG(
     )
 
     # Task Dependencies
-    ingest_task >> preprocess_task >> train_task >> evaluate_task
+    ingest_task >> preprocess_task >> ge_validation_task >> train_task >> evaluate_task
